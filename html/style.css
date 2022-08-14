@@ -3,8 +3,25 @@
 * {
     padding: 0;
     margin: 0;
-    font-family: "Poppins", sans-serif !important;
+    font-family: 'Poppins', sans-serif;
     font-weight: 300;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #171717e6;
+    border-radius: 10px;
 }
 
 #container {
@@ -15,10 +32,22 @@
     border-radius: 5px;
     background: transparent !important;
 }
+.button {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row !important;
+    gap: 10px;
+}
+.title {
+    cursor: default;
+    gap: 10px;
+    display: flex;
+    flex-direction: row !important;
+}
 
 #buttons {
     max-height: 75vh;
-    width: 31vw;
+    width: 300px;
     overflow-x: none;
     overflow-y: auto;
     padding: 10px;
@@ -29,17 +58,8 @@ body {
     background: transparent !important;
 }
 
-#buttons::-webkit-scrollbar {
-    display: none;
-}
-
-body::-webkit-scrollbar {
-    display: none;
-}
-
 .button {
     width: auto;
-    max-width: 45%;
     height: 10%;
     background: rgba(23, 23, 23, 90%);
     color: white;
@@ -52,9 +72,16 @@ body::-webkit-scrollbar {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0rem 0rem 0.1rem 0.05rem #000000;
+    box-shadow: 0rem 0rem 0.5rem 0.05rem #000000;
     cursor: pointer;
     border-left: 8px solid rgba(23, 23, 23, 50%);
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: left;
 }
 
 .button:hover {
@@ -64,7 +91,6 @@ body::-webkit-scrollbar {
 
 .title {
     width: auto;
-    max-width: 45%;
     height: 10%;
     background: rgba(23, 23, 23, 90%);
     border-left: 8px solid rgba(23, 23, 23, 50%);
@@ -78,7 +104,16 @@ body::-webkit-scrollbar {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0rem 0rem 0.1rem 0.05rem #000000;
+    box-shadow: 0rem 0rem 0.5rem 0.05rem #000000;
+}
+
+.title > div.column > div.header {
+    text-decoration: underline !important;
+}
+
+.disabled {
+    background: rgba(102, 102, 102, 0.9) !important;
+    cursor: default;
 }
 
 div > .text {
