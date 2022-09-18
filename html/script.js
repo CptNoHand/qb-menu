@@ -10,49 +10,31 @@ const openMenu = (data = null, useHistory = false) => {
     }
 
     data.forEach((item, index) => {
-        let header = item.header;
-        let message = item.txt || item.text;
-        let isMenuHeader = item.isMenuHeader;
-        html += getButtonRender(header, message, index, isMenuHeader);
-        if (item.params) buttonParams[index] = item.params;
+        if(!item.hidden) {
+            let header = item.header;
+            let message = item.txt || item.text;
+            let isMenuHeader = item.isMenuHeader;
+            let isDisabled = item.disabled;
+            let icon = item.icon;
+            html += getButtonRender(header, message, index, isMenuHeader, isDisabled, icon);  
+            if (item.params) buttonParams[index] = item.params;
+        }
     });
 
     $("#buttons").html(html);
     menuHistory.push(data);
 };
 
-const showHeader = (data = null) => {
-    let html = "";
-    data.forEach((item, index) => {
-        let header = item.header;
-        let message = item.txt || item.text;
-        let isMenuHeader = item.isMenuHeader;
-        html += getButtonRender(header, message, index, isMenuHeader);
-        if (item.params) buttonParams[index] = item.params;
-    });
-    $("#buttons").html(html);
-    menuHistory.push(data);
-}
-
-const getButtonRender = (header, message = null, id, isMenuHeader) => {
-    if (message) {
-        return `
-            <div class="${
-                isMenuHeader ? "title" : "button"
-            }" data-btn-id="${id}">
-                <div class="header">${header}</div>
-                <div class="text">${message}</div>
+const getButtonRender = (header, message = null, id, isMenuHeader, isDisabled, icon) => {
+    return `
+        <div class="${isMenuHeader ? "title" : "button"} ${isDisabled ? "disabled" : ""}" id="${id}">
+            <div class="icon"> <img src=nui://${icon} width=30px onerror="this.onerror=null; this.remove();"> <i class="${icon}" onerror="this.onerror=null; this.remove();"></i> </div>
+            <div className="column">
+            <div class="header"> ${header}</div>
+            ${message ? `<div class="text">${message}</div>` : ""}
             </div>
-        `;
-    } else {
-        return `
-            <div class="${
-                isMenuHeader ? "title" : "button"
-            }" data-btn-id="${id}">
-                <div class="header">${header}</div>
-            </div>
-        `;
-    }
+        </div>
+    `;
 };
 
 const closeMenu = () => {
